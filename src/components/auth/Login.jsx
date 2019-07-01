@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { doLogIn } from '../../actions/authActions';
-import {
-  Button,
-  Form,
-  Message
-} from 'semantic-ui-react';
+import { EESections } from '../../styles/ee-style';
 
 class Login extends Component {
   state = {
@@ -21,21 +17,10 @@ class Login extends Component {
   };
 
   render() {
-    console.log( this.props );
     return (
-      <Form error onSubmit={this.onHandleSubmit}>
-        <Form.Input label="Email Address" placeholder="Email Address"
-                    name='email' value={this.state.email}
-                    onChange={this.onHandleChange} />
-        {this.props.errors && this.props.errors.email &&
-        <Message error content={this.props.errors.email} />}
-        <Form.Input label="Password" type='password' placeholder="password"
-                    name='password' value={this.state.password}
-                    onChange={this.onHandleChange} />
-        {this.props.errors && this.props.errors.password &&
-        <Message error content={this.props.errors.password} />}
-        <Button>submit</Button>
-      </Form>
+      <EESections header>
+        <h1>Login</h1>
+      </EESections>
     );
   }
 }
