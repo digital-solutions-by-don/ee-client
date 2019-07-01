@@ -9,8 +9,9 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from './components/App';
 import 'semantic-ui-css/semantic.min.css';
 
+const store = createStore();
 
-const application = <Provider store={createStore()}><Router><App /></Router></Provider>
-const rootDocument = document.getElementById('root');
+const application  = <Provider store={store}><Router><App /></Router></Provider>;
+const rootDocument = document.getElementById( 'root' );
 
-render(application, rootDocument);
+render( application, rootDocument );
