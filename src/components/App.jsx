@@ -6,15 +6,18 @@ import {
 } from 'react-router-dom';
 import { doLogOut } from '../actions/authActions';
 import LandingPage from './homepage/LandingPage';
-import MainAppPage from './application/MainAppPage';
+import AuthContainer from './auth/AuthContainer';
+import Dashboard from './application/Dashboard';
+import PrivateRoute from './shared/PrivateRoute';
 
 class App extends Component {
   render() {
     return (
       <>
         <Switch>
-          <Route path='/register' component={MainAppPage} />
-          <Route path='/login' component={MainAppPage} />
+          <PrivateRoute path='/dashboard' component={Dashboard} />
+          <Route path='/register' component={AuthContainer} />
+          <Route path='/login' component={AuthContainer} />
           <Route path='/' component={LandingPage} />
         </Switch>
       </>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { doLogIn } from '../../actions/authActions';
 import {
   Button,
@@ -21,12 +21,15 @@ class Login extends Component {
 
   onHandleChange = e => this.setState( {[e.target.name]: e.target.value} );
 
-  onHandleSubmit = e => {
+  onHandleSubmit = async e => {
     e.preventDefault();
-    this.props.doLogIn( this.state );
+    await this.props.doLogIn( this.state );
+    !this.props.errors && this.props.history.push('/dashboard');
+
   };
 
   render() {
+    console.log(this.props);
     return (
       <Container fluid
         className='w-100 d-flex justify-content-center align-items-center mb-5'>
@@ -88,4 +91,5 @@ const mapStateToProps = state => ({
   isLoading: state.auth.isLoading
 });
 
+Login = withRouter(Login);
 export default connect( mapStateToProps, {doLogIn} )( Login );

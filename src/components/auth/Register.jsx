@@ -8,7 +8,7 @@ import {
   Form,
   Row,Container
 } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import Logo from '../../imgs/EmergencyElectricLogo.svg';
 
 class Register extends Component {
@@ -22,9 +22,10 @@ class Register extends Component {
 
   handleChange = e => this.setState( { [e.target.name]: e.target.value } );
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
-    this.props.doCreateAccount(this.state);
+    await this.props.doCreateAccount(this.state);
+    !this.props.errors && this.props.history.push('/dashboard');
   };
 
   render() {
@@ -89,4 +90,5 @@ class Register extends Component {
 
 const mapStateToProps = state => ({ errors: state.auth.errors });
 
+Register=withRouter(Register);
 export default connect( mapStateToProps, { doCreateAccount } )( Register );
