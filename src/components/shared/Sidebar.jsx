@@ -1,11 +1,14 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {doLogOut} from '../../actions/authActions';
+import {Link} from 'react-router-dom';
 import {
   Container,
   Nav,
   Navbar,
 } from 'react-bootstrap';
 
-const Sidebar = () => {
+const Sidebar = props => {
   return (
     <Navbar variant='dark'
             className="sidebar sidebar-dark bg-gradient-primary accordion align-items-start d-none d-md-flex">
@@ -13,7 +16,7 @@ const Sidebar = () => {
         <Navbar.Brand
           className="d-flex justify-content-center align-items-center sidebar-brand m-0">
           <div className="sidebar-brand-text">
-            <span>Donald Whitely</span>
+            <span>{`${props.first_name} ${props.last_name}`}</span>
           </div>
         </Navbar.Brand>
         <hr className='sidebar-divider' />
@@ -24,13 +27,18 @@ const Sidebar = () => {
           <Nav.Item>
             <Nav.Link href="#">Applications</Nav.Link>
           </Nav.Item>
+          <Nav.Item>
+            <Link to='/' onClick={props.doLogOut} className='nav-link'>Logout</Link>
+          </Nav.Item>
         </Nav>
-        <div className="text-center d-none d-md-inline">
-          <button className='btn rounded-circle border-0'>Toggle</button>
-        </div>
       </Container>
     </Navbar>
   );
 };
 
-export default Sidebar;
+const mapStateToProps = state => ({
+  first_name: state.auth.user.first_name,
+  last_name: state.auth.user.last_name
+})
+
+export default connect(mapStateToProps, {doLogOut})(Sidebar);
