@@ -4,19 +4,17 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
-
-import Login from './auth/Login';
 import { doLogOut } from '../actions/authActions';
 import LandingPage from './homepage/LandingPage';
-import Navigation from './shared/Navigation';
+import MainAppPage from './application/MainAppPage';
 
 class App extends Component {
   render() {
     return (
       <>
-        <Navigation />
         <Switch>
-          <Route path='/login' component={Login} />
+          <Route path='/register' component={MainAppPage} />
+          <Route path='/login' component={MainAppPage} />
           <Route path='/' component={LandingPage} />
         </Switch>
       </>
