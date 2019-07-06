@@ -1,10 +1,14 @@
 import React from 'react';
-import {Navbar, Container} from 'react-bootstrap';
+import {
+  Container,
+  Navbar,
+} from 'react-bootstrap';
 import Scrollchor from 'react-scrollchor';
 
 const Navigation = () => {
   return (
-    <Navbar bg='primary' varient='dark' expand='lg' fixed='top' className='text-uppercase'>
+    <Navbar bg='primary' varient='dark' expand='lg' fixed='top'
+            className='text-uppercase'>
       <Container className='justify-content-center mb-md-2 mb-lg-0'>
         <Navbar.Toggle
           aria-controls='navbar'
@@ -46,7 +50,7 @@ const Navigation = () => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-  )
-}
+  );
+};
 
 export default Navigation;

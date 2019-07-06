@@ -11,6 +11,7 @@ import {
   Row
 } from 'react-bootstrap';
 import Loader from 'react-loader-spinner';
+import Logo from '../../imgs/EmergencyElectricLogo.svg';
 
 class Login extends Component {
   state = {
@@ -27,15 +28,16 @@ class Login extends Component {
 
   render() {
     return (
-      <Container
+      <Container fluid
         className='w-100 d-flex justify-content-center align-items-center mb-5'>
-        <Card className='border-left-primary shadow bg-white'>
-          <Card.Header>Login</Card.Header>
+        <Card className='shadow'>
+          <Card.Img variant='top' src={Logo} />
+          <Card.Header className='text-center'>Login</Card.Header>
           <Card.Body>
             <Form onSubmit={this.onHandleSubmit}>
               <Form.Group as={Row}>
-                <Form.Label column sm='4'>Email</Form.Label>
-                <Col sm="8">
+                <Form.Label column sm='2'>Email</Form.Label>
+                <Col sm="10">
                   <Form.Control value={this.state.email}
                                 onChange={this.onHandleChange} name='email'
                                 type='email' />
@@ -45,8 +47,8 @@ class Login extends Component {
                 </Col>
               </Form.Group>
               <Form.Group as={Row}>
-                <Form.Label column sm='4'>Password</Form.Label>
-                <Col sm="8">
+                <Form.Label column sm='2'>Password</Form.Label>
+                <Col sm="10">
                   <Form.Control value={this.state.password}
                                 onChange={this.onHandleChange} name='password'
                                 type='password' />
@@ -56,11 +58,10 @@ class Login extends Component {
                     className='text-danger small'>{this.props.errors.password}</span>}
                 </Col>
               </Form.Group>
-
               <Row>
                 <Col sm={{
                   span  : 1,
-                  offset: 4
+                  offset: 2
                 }}>
                   {this.props.isLoading ?
                     <Loader type="ThreeDots" color="#670300" height={34}
@@ -72,7 +73,7 @@ class Login extends Component {
               </Row>
             </Form>
           </Card.Body>
-          <Card.Footer>
+          <Card.Footer className='text-center'>
             Don't have an Account, Click <Link to='/register'>Here</Link> to
             Register
           </Card.Footer>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
   Route,
-  Switch
+  Switch,
 } from 'react-router-dom';
 import { doLogOut } from '../actions/authActions';
 import LandingPage from './homepage/LandingPage';
@@ -22,4 +22,4 @@ class App extends Component {
   }
 }
 
-export default connect( null, {doLogOut} )( App );
+export default connect( null, { doLogOut } )( App );

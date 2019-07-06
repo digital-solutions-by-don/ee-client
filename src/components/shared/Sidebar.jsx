@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Container,
   Nav,
-  Navbar
+  Navbar,
 } from 'react-bootstrap';
 
 const Sidebar = () => {

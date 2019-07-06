@@ -1,16 +1,14 @@
 import React from 'react';
 import {
   Container,
-  Navbar, Nav
+  Navbar,
 } from 'react-bootstrap';
 
 const AdminNavigation = () => {
   return (
     <Navbar variant='dark' className='bg-dark mb-4 shadow topbar static-top'>
-      <Container fluid>
-        <Navbar.Brand className='mr-auto'>Emergency Electric Inc</Navbar.Brand>
-        <div className="topbar-divider d-none d-sm-block" />
-        <Nav.Item>Profile</Nav.Item>
+      <Container className='d-flex justify-content-center'>
+        <Navbar.Brand>Emergency Electric Inc</Navbar.Brand>
       </Container>
     </Navbar>
   );

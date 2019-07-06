@@ -11,7 +11,8 @@ import './index.scss';
 
 const store = createStore();
 
-const application  = <Provider store={store}><Router><App /></Router></Provider>;
+const application  = <Provider
+  store={store}><Router><App /></Router></Provider>;
 const rootDocument = document.getElementById( 'root' );
 
 render( application, rootDocument );
