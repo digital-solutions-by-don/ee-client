@@ -29,7 +29,6 @@ class Login extends Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <Container fluid
         className='w-100 d-flex justify-content-center align-items-center mb-5'>

@@ -22,7 +22,7 @@ const Sidebar = props => {
         <hr className='sidebar-divider' />
         <Nav className="text-light nav">
           <Nav.Item>
-            <Nav.Link href="#">Messages</Nav.Link>
+            <Link to='/dashboard/messages' className='nav-link'>Messages</Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link href="#">Applications</Nav.Link>
