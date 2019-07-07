@@ -15,6 +15,8 @@ class App extends Component {
     return (
       <>
         <Switch>
+          <PrivateRoute path='/dashboard/new-message' component={Dashboard}/>
+          <PrivateRoute path='/dashboard/messages' component={Dashboard} />
           <PrivateRoute path='/dashboard' component={Dashboard} />
           <Route path='/register' component={AuthContainer} />
           <Route path='/login' component={AuthContainer} />
