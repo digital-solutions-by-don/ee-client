@@ -85,6 +85,8 @@ export default ( state = initialState, action ) => {
         isLoading: false,
         errors   : payload,
       };
+    case types.LOGOUT_SUCCESS:
+      return initialState;
     default:
       return state;
   }

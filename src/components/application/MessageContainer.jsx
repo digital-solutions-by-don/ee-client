@@ -5,6 +5,7 @@ import {
   fetchAllMessages,
   fetchMessages,
 } from '../../actions/messageActions';
+import { getAllUsers } from '../../actions/authActions';
 import Loader from 'react-loader-spinner';
 import {
   Container,
@@ -20,14 +21,24 @@ class MessageContainer extends Component {
   async componentDidMount() {
     if (this.props.isAdmin) {
       await this.props.fetchAllMessages();
+      this.props.getAllUsers();
     } else {
       await this.props.fetchMessages( this.props.id );
     }
   }
 
+  userName(id) {
+    console.log(id);
+    const selectedUser = this.props.users.filter(user => user.id === id)[0];
+    if (selectedUser === undefined) {
+      return '';
+    }
+    return `${selectedUser.last_name}, ${selectedUser.first_name}`
+  }
+
   handleDelete = async id => {
     await this.props.deleteMessage( id );
-    !this.props.errors && this.props.isAdmin ? this.props.fetchAllMessages(): this.props.fetchMessages();
+    !this.props.errors && this.props.isAdmin ? this.props.fetchAllMessages() : this.props.fetchMessages();
   };
 
   render() {
@@ -46,10 +57,10 @@ class MessageContainer extends Component {
           {messages.length === 0 &&
           <span
             className='d-block text-center lead'>{`No ${this.props.isAdmin ? 'Available' : 'Sent'} Messages At this Time`}</span>}
-          <Table responsive striped bordered hover>
+          {messages.length !== 0 && <Table responsive striped bordered hover>
             <thead>
             <tr>
-              {this.props.isAdmin && <th>User Id</th>}
+              {this.props.isAdmin && <th>User Name</th>}
               <th>Subject</th>
               <th>Message</th>
               <th>Date</th>
@@ -59,7 +70,7 @@ class MessageContainer extends Component {
             <tbody>
             {messages.map( ( message, i ) => (
               <tr key={i}>
-                {this.props.isAdmin && <td>{message.creator_id}</td>}
+                {this.props.isAdmin && <td>{this.userName(message.creator_id)}</td>}
                 <td>{message.message_subject}</td>
                 <td>{message.message_body}</td>
                 <td>{moment( message.created_at )
@@ -70,7 +81,7 @@ class MessageContainer extends Component {
               </tr>
             ) )}
             </tbody>
-          </Table>
+          </Table>}
           <hr />
           <Container className='d-flex justify-content-between'>
             <Link to='/dashboard' className='btn btn-primary'>Go Back</Link>
@@ -91,12 +102,14 @@ const mapStateToProps = state => ({
   messageList: state.message.messageList,
   isAdmin    : state.auth.user.isAdmin,
   errors     : state.message.errors,
+  users      : state.users.users,
 });
 
 const actions = {
   fetchMessages,
   fetchAllMessages,
   deleteMessage,
+  getAllUsers,
 };
 
 MessageContainer = withRouter( MessageContainer );
