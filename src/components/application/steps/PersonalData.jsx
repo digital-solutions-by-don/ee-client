@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {sendPersonalData} from '../../../actions/applicationActions';
+import { sendPersonalData } from '../../../actions/applicationActions';
 import { Link } from 'react-router-dom';
 import {
   Button,
@@ -12,10 +12,12 @@ import {
 import DatePicker from 'react-datepicker';
 import DateForm from '../utils/DateForm';
 
+
 import 'react-datepicker/dist/react-datepicker.css';
 
 class PersonalData extends Component {
   state = {
+    user_id         : this.props.user.id,
     first_name      : this.props.user.first_name,
     middle_name     : '',
     last_name       : this.props.user.last_name,
@@ -55,7 +57,7 @@ class PersonalData extends Component {
 
   handleSubmit = async e => {
     e.preventDefault();
-    await this.props.sendPersonalData(this.state);
+    await this.props.sendPersonalData( this.state );
   };
 
   render() {
@@ -153,7 +155,7 @@ class PersonalData extends Component {
                                   onChange={this.handleChange} />
                     {this.props.errors && this.props.errors.phone_number &&
                     <span
-                      className='text-danger'>{this.props.phone_number}</span>}
+                      className='text-danger'>{this.props.errors.phone_number}</span>}
                   </Form.Group>
                   <Form.Group as={Col} md={4}>
                     <Form.Label>Alternate Phone Number</Form.Label>
@@ -163,19 +165,19 @@ class PersonalData extends Component {
                                   onChange={this.handleChange} />
                     {this.props.errors && this.props.errors.alt_phone_number &&
                     <span
-                      className='text-danger'>{this.props.alt_phone_number}</span>}
+                      className='text-danger'>{this.props.errors.alt_phone_number}</span>}
                   </Form.Group>
                   <Form.Group as={Col} md={4}>
                     <Form.Label>Email Address</Form.Label>
                     <Form.Control type='email' value={this.state.email}
                                   name='email' onChange={this.handleChange} />
                     {this.props.errors && this.props.errors.email &&
-                    <span className='text-danger'>{this.props.email}</span>}
+                    <span
+                      className='text-danger'>{this.props.errors.email}</span>}
                   </Form.Group>
                 </Form.Row>
               </Col>
               <Col lg={6}>
-
 
 
                 <Form.Row>
@@ -243,50 +245,53 @@ class PersonalData extends Component {
                   {this.props.errors && this.props.errors.shift && <span
                     className='text-danger'>{this.props.errors.shift}</span>}
                 </Col>
-                  <Col>
-                    <span className='mr-2'>{`Are you authorized to work in the United States?`}</span>
-                    <Form.Check custom inline label="Yes" id='auth_yes'
-                                checked={this.state.auth_yes}
-                                onChange={this.handleCheckChange} />
-                    <Form.Check custom inline label="No" id='auth_no'
-                                checked={this.state.auth_no}
-                                onChange={this.handleCheckChange} />
-                    {this.props.errors && this.props.errors.auth && <span
-                      className='text-danger'>{this.props.errors.auth}</span>}
-                  </Col>
-                  <Col>
-                    <span className='mr-2'>{`Are you under 18?`}</span>
-                    <Form.Check custom inline label="Yes" id='under_yes'
-                                checked={this.state.under_yes}
-                                onChange={this.handleCheckChange} />
-                    <Form.Check custom inline label="No" id='under_no'
-                                checked={this.state.under_no}
-                                onChange={this.handleCheckChange} />
-                    {this.props.errors && this.props.errors.under && <span
-                      className='text-danger'>{this.props.errors.under}</span>}
-                  </Col>
-                  <Col>
-                    <span className='mr-2'>{`If so, can you provide a work permit?  `}</span>
-                    <Form.Check custom inline label="Yes" id='permit_yes'
-                                checked={this.state.permit_yes}
-                                onChange={this.handleCheckChange} />
-                    <Form.Check custom inline label="No" id='permit_no'
-                                checked={this.state.permit_no}
-                                onChange={this.handleCheckChange} />
-                    {this.props.errors && this.props.errors.permit && <span
-                      className='text-danger'>{this.props.errors.permit}</span>}
-                  </Col>
+                <Col>
+                  <span
+                    className='mr-2'>{`Are you authorized to work in the United States?`}</span>
+                  <Form.Check custom inline label="Yes" id='auth_yes'
+                              checked={this.state.auth_yes}
+                              onChange={this.handleCheckChange} />
+                  <Form.Check custom inline label="No" id='auth_no'
+                              checked={this.state.auth_no}
+                              onChange={this.handleCheckChange} />
+                  {this.props.errors && this.props.errors.auth && <span
+                    className='text-danger'>{this.props.errors.auth}</span>}
+                </Col>
+                <Col>
+                  <span className='mr-2'>{`Are you under 18?`}</span>
+                  <Form.Check custom inline label="Yes" id='under_yes'
+                              checked={this.state.under_yes}
+                              onChange={this.handleCheckChange} />
+                  <Form.Check custom inline label="No" id='under_no'
+                              checked={this.state.under_no}
+                              onChange={this.handleCheckChange} />
+                  {this.props.errors && this.props.errors.under && <span
+                    className='text-danger'>{this.props.errors.under}</span>}
+                </Col>
+                <Col>
+                  <span
+                    className='mr-2'>{`If so, can you provide a work permit?  `}</span>
+                  <Form.Check custom inline label="Yes" id='permit_yes'
+                              checked={this.state.permit_yes}
+                              onChange={this.handleCheckChange} />
+                  <Form.Check custom inline label="No" id='permit_no'
+                              checked={this.state.permit_no}
+                              onChange={this.handleCheckChange} />
+                  {this.props.errors && this.props.errors.permit && <span
+                    className='text-danger'>{this.props.errors.permit}</span>}
+                </Col>
 
               </Col>
 
             </Row>
-            <Button type='submit'>Submit</Button>
+            {!this.props.isSuccess && <Button type='submit'>Submit</Button>}
           </Form>
           <hr />
           <div className='d-flex justify-content-between'>
             <Link
               to='/dashboard/application/federal-law-requirements'>Previous</Link>
-            {this.props.isSuccess && <Link to='/dashboard/application/employment'>Continue</Link>}
+            {this.props.isSuccess &&
+            <Link to='/dashboard/application/employment'>Continue</Link>}
           </div>
         </Container>
       </section>
@@ -294,6 +299,11 @@ class PersonalData extends Component {
   }
 }
 
-const mapStateToProps = state => ({ user: state.auth.user, isLoading: state.application.isLoading, isSuccess: state.application.isSuccess, errors: state.application.errors });
-const actions         = {sendPersonalData};
+const mapStateToProps = state => ({
+  user     : state.auth.user,
+  isLoading: state.application.isLoading,
+  isSuccess: state.application.isSuccess,
+  errors   : state.application.errors,
+});
+const actions         = { sendPersonalData };
 export default connect( mapStateToProps, actions )( PersonalData );
