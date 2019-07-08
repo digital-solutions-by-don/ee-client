@@ -1,5 +1,6 @@
 import types from './';
 import ee_Api from '../api/eeApi';
+import { eeApiWithAuth } from '../api/eeApiWithAuth';
 
 export const doLogIn = credentials => async dispatch => {
   dispatch( { type: types.LOGIN_START } );
@@ -44,4 +45,22 @@ export const doWelcomeBack = () => {
   return {
     type: types.WELCOME_BACK,
   };
+};
+
+export const getAllUsers = () => async dispatch => {
+  dispatch( { type: types.GET_ALL_USERS_START } );
+  try {
+    const response = await eeApiWithAuth()
+    .get( '/users' );
+    console.log( response );
+    dispatch( {
+      type   : types.GET_ALL_USERS_SUCCESS,
+      payload: response.data,
+    } );
+  } catch (error) {
+    dispatch( {
+      type   : types.GET_ALL_USERS_FAIL,
+      payload: error.response.data,
+    } );
+  }
 };

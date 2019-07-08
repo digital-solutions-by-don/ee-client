@@ -19,3 +19,64 @@ $border-radius: 1rem;
 $border-radius-lg: 1.2rem;
 $border-radius-sm: 0.8rem;
 @import './sb-admin/sb-admin-2';
+
+.ee-content-section {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+
+  h2 {
+    font-size: 3rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+  }
+
+}
+
+.application {
+  width: 90%;
+}
+
+.ee-header-section {
+  min-height: 30rem;
+  position: relative;
+  display: table;
+  width: 100%;
+  height: auto;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0, rgba(255, 255, 255, 0.1) 100%),
+  url('./imgs/electrical-electrician-electricity-1435183.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @media (min-width: 992px) {
+    height: 100vh;
+  }
+  h1 {
+    font-size: 4rem;
+    margin: 0;
+    padding: 0;
+
+    @media (min-width: 992px) {
+      font-size: 5.5rem;
+    }
+  }
+}
+
+.application-display {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: $font-family-sans-serif;
+    text-transform: uppercase;
+  }
+}

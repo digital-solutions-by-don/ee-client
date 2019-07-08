@@ -18,7 +18,7 @@ const cardContent = [
     header: 'Applications',
     title : `We're hiring!`,
     body  : 'We are accepting applications.  Feel free to apply online now!',
-    path  : '/dashboard/messages',
+    path  : '/dashboard/application',
   },
 ];
 

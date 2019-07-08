@@ -4,6 +4,7 @@ import AdminNavigation from '../auth/Navigation';
 import MainContent from './MainContent';
 import MessageContainer from './MessageContainer';
 import NewMessage from './NewMessage';
+import ApplicationContainer from './ApplicationContainer';
 
 const Dashboard = props => {
   console.log( props.match );
@@ -16,6 +17,9 @@ const Dashboard = props => {
           {props.match.path === '/dashboard' && <MainContent />}
           {props.match.path === '/dashboard/messages' && <MessageContainer/>}
           {props.match.path === '/dashboard/new-message' && <NewMessage />}
+          {props.match.path === '/dashboard/application' && <ApplicationContainer/>}
+          {props.match.path === '/dashboard/application/federal-law-requirements' && <ApplicationContainer/>}
+          {props.match.path === '/dashboard/application/personal-data' && <ApplicationContainer/>}
         </div>
       </div>
       {/* Footer Will Go Here */}
