@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {sendPersonalData} from '../../../actions/applicationActions';
 import { Link } from 'react-router-dom';
 import {
   Button,
@@ -52,9 +53,9 @@ class PersonalData extends Component {
 
   handleDateChange = date => this.setState( { start_date: date } );
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
-    console.log( this.state );
+    await this.props.sendPersonalData(this.state);
   };
 
   render() {
@@ -293,6 +294,6 @@ class PersonalData extends Component {
   }
 }
 
-const mapStateToProps = state => ({ user: state.auth.user, isLoading: state.application.isLoading, isSuccess: state.application.isSuccess });
-const actions         = {};
+const mapStateToProps = state => ({ user: state.auth.user, isLoading: state.application.isLoading, isSuccess: state.application.isSuccess, errors: state.application.errors });
+const actions         = {sendPersonalData};
 export default connect( mapStateToProps, actions )( PersonalData );

@@ -10,8 +10,8 @@ export const setInitialSuccess = () => {
 export const sendPersonalData = persData => async dispatch => {
   dispatch( { type: types.PERSONAL_DATA_START } );
   try {
-    const response = eeApiWithAuth()
-    .post( '/application/personal_data', persData );
+    const response = await eeApiWithAuth()
+    .post( '/application/personal-data', persData );
     dispatch( {
       type   : types.PERSONAL_DATA_SUCCESS,
       payload: response.data,
