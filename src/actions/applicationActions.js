@@ -51,3 +51,9 @@ export const fetchApplication = () => async dispatch => {
     dispatch({type: types.FETCH_APPLICATION_DATA_FAIL, payload: error.response.data})
   }
 }
+
+export const setSuccess = () => {
+  return ({
+    type: types.SET_APPLICATION_SUCCESS
+  })
+}

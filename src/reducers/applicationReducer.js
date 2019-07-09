@@ -91,6 +91,8 @@ export default ( state = initialState, action ) => {
         },
         errors     : payload,
       };
+    case types.SET_APPLICATION_SUCCESS:
+      return {...state, isSuccess: true}
     default:
       return state;
   }
