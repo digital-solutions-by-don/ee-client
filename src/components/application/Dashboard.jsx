@@ -20,6 +20,7 @@ const Dashboard = props => {
           {props.match.path === '/dashboard/application' && <ApplicationContainer/>}
           {props.match.path === '/dashboard/application/federal-law-requirements' && <ApplicationContainer/>}
           {props.match.path === '/dashboard/application/personal-data' && <ApplicationContainer/>}
+          {props.match.path === '/dashboard/application/employment' && <ApplicationContainer/>}
         </div>
       </div>
       {/* Footer Will Go Here */}

@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import Introduction from './steps/Introduction';
 import FederalLawRequirements from './steps/FederalLawRequirements';
 import PersonalData from './steps/PersonalData';
+import Employment from './steps/Employment';
 
 const ApplicationContainer = ( { match } ) => {
   return (
@@ -10,6 +11,7 @@ const ApplicationContainer = ( { match } ) => {
       {match.path === '/dashboard/application' && <Introduction />}
       {match.path === '/dashboard/application/federal-law-requirements' && <FederalLawRequirements/>}
       {match.path === '/dashboard/application/personal-data' && <PersonalData />}
+      {match.path === '/dashboard/application/employment' && <Employment/>}
     </div>
   );
 };

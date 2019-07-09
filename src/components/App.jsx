@@ -9,12 +9,14 @@ import LandingPage from './homepage/LandingPage';
 import AuthContainer from './auth/AuthContainer';
 import Dashboard from './application/Dashboard';
 import PrivateRoute from './shared/PrivateRoute';
+import Employment from './application/steps/Employment';
 
 class App extends Component {
   render() {
     return (
       <>
         <Switch>
+          <PrivateRoute path='/dashboard/application/employment' component={Dashboard} />
           <PrivateRoute path='/dashboard/application/personal-data' component={Dashboard} />
           <PrivateRoute path='/dashboard/application/federal-law-requirements' component={Dashboard} />
           <PrivateRoute path='/dashboard/application' component={Dashboard} />
@@ -23,6 +25,7 @@ class App extends Component {
           <PrivateRoute path='/dashboard' component={Dashboard} />
           <Route path='/register' component={AuthContainer} />
           <Route path='/login' component={AuthContainer} />
+          {/*<Route path='/test' component={Employment} />*/}
           <Route path='/' component={LandingPage} />
         </Switch>
       </>
